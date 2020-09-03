@@ -40,7 +40,9 @@
         android:id="@+id/bt_login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+
         android:text="@string/login"
+        android:textAllCaps="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.312"
@@ -52,7 +54,9 @@
         android:id="@+id/bt_register"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+
         android:text="@string/register"
+        android:textAllCaps="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.69"
@@ -62,13 +66,14 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
         android:layout_marginTop="16dp"
         android:contentDescription="@string/user_image"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:src="@tools:sample/avatars" />
+        app:srcCompat="@drawable/avatar"
+        tools:src="@drawable/avatar" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
