@@ -6,4 +6,12 @@
     <string name="e_mail_adress">E-Mail address</string>
     <string name="register">to register</string>
     <string name="user_image">user image</string>
+    <string name="sign_out">Sign Out</string>
+    <string name="new_portfolio">New Portfolio</string>
+    <string name="mi_new_asset">New Assset</string>
+    <string name="edelmetalle">Edelmetalle</string>
+    <string name="fremdw_rungskonto">Fremdwärungskonto</string>
+    <string name="festgeld">Festgeld</string>
+    <string name="tagesgeld">Tagesgeld</string>
+    <string name="wertpapiere">Wertpapiere</string>
 </resources>

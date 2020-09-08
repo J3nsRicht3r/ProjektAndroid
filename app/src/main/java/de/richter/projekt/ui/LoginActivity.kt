@@ -1,4 +1,4 @@
-package de.richter.projekt
+package de.richter.projekt.ui
 
 import android.content.Intent
 import android.os.Bundle
@@ -8,19 +8,28 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
+import de.richter.projekt.R
 import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : AppCompatActivity(), View.OnClickListener {
-    private var auth: FirebaseAuth? = null
+    private lateinit var auth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
         // Initialize Firebase Auth
-        auth = FirebaseAuth.getInstance()
+        auth = Firebase.auth
 
         bt_login.setOnClickListener(this)
         bt_register.setOnClickListener(this)
+    }
+
+    override fun onStart() {
+        super.onStart()
+        val currentUser = auth.currentUser
+        updateUI(currentUser)
     }
 
     override fun onClick(view: View?) {
@@ -31,30 +40,22 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
         } else if (i == R.id.bt_login) {
             signIn(et_mail_address.text.toString(), et_password.text.toString())
         }
-//        } else if (i == R.id.btn_sign_out) {
-//            signOut()
-//
-    }
-
-    override fun onStart() {
-        super.onStart()
-        val currentUser = auth!!.currentUser
-        updateUI(currentUser)
     }
 
     private fun toRegister(email: String, password: String) {
         if (!validateForm(email, password)) {
             return
         }
-        auth!!.createUserWithEmailAndPassword(email, password)
+        auth.createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
-                    val currentUser = auth!!.currentUser
+                    val currentUser = auth.currentUser
                     updateUI(currentUser)
                 } else {
+                    Toast.makeText(applicationContext, "Authentication failed!", Toast.LENGTH_SHORT)
+                        .show()
                     updateUI(null)
                 }
-
             }
     }
 
@@ -62,12 +63,12 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
         if (!validateForm(email, password)) {
             return
         }
-        auth!!.signInWithEmailAndPassword(email, password)
+        auth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
                     // update UI with the signed-in user's information
-//                    val currentUser = auth.getCurrentUser()
-//                    updateUI(currentUser)
+                    val currentUser = auth.currentUser
+                    updateUI(currentUser)
                     startActivity(Intent(this, HomeActivity::class.java))
                 } else {
                     Toast.makeText(applicationContext, "Authentication failed!", Toast.LENGTH_SHORT)
@@ -101,7 +102,6 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
     }
 
     private fun updateUI(currentUser: FirebaseUser?) {
-
         if (currentUser != null) {
             et_password.visibility = View.GONE
             bt_login.visibility = View.VISIBLE
