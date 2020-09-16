@@ -1,0 +1,12 @@
+{
+  "result": {
+    "from": "EUR"
+  },
+  "conversion": [
+    {
+      "to": "USD",
+      "date": "2016-06-11T18:29:12",
+      "rate": 1.1849
+    }
+  ]
+}

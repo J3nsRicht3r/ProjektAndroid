@@ -10,8 +10,11 @@
     <string name="new_portfolio">New Portfolio</string>
     <string name="mi_new_asset">New Assset</string>
     <string name="edelmetalle">Edelmetalle</string>
-    <string name="fremdw_rungskonto">Fremdwärungskonto</string>
+    <string name="fremdwaehrungskonto">Fremdwährungskonto</string>
     <string name="festgeld">Festgeld</string>
     <string name="tagesgeld">Tagesgeld</string>
     <string name="wertpapiere">Wertpapiere</string>
+    <string name="portfolio_jens">Portfolio Jens</string>
+    <string name="depot">Depot</string>
+    <string name="verrechnungskonto">Verrechnungskonto</string>
 </resources>

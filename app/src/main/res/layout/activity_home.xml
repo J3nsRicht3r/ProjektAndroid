@@ -6,33 +6,33 @@
     android:layout_height="match_parent"
     tools:context=".ui.HomeActivity">
 
-    <Button
-        android:id="@+id/bt_new_portfolio"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="@string/new_portfolio"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <LinearLayout
+        android:id="@+id/lyGesamt"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/bt_new_portfolio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/new_portfolio" />
+
+        <Button
+            android:id="@+id/bt_portfolio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/portfolio_jens" />
+
+    </LinearLayout>
 
     <Button
         android:id="@+id/bt_sign_out"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/sign_out"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/lyGesamt"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_list"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toTopOf="@+id/bt_sign_out"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bt_new_portfolio"
-        app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
