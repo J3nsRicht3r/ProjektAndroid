@@ -14,7 +14,7 @@ class PortfolioActivity : AppCompatActivity() {
             startActivity(
                 Intent(
                     this,
-                    FremdwaerungskontoActivity::class.java
+                    FremdwaehrungskontoActivity::class.java
                 )
             )
         }

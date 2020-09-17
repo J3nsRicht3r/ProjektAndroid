@@ -13,7 +13,7 @@
         android:theme="@style/AppTheme">
         <activity android:name=".ui.VerrechnungskontoActivity"></activity>
         <activity android:name=".ui.DepotActivity" />
-        <activity android:name=".ui.FremdwaerungskontoActivity" />
+        <activity android:name=".ui.FremdwaehrungskontoActivity" />
         <activity android:name=".ui.PortfolioActivity" />
         <activity android:name=".ui.HomeActivity" />
         <activity android:name=".ui.LoginActivity">
