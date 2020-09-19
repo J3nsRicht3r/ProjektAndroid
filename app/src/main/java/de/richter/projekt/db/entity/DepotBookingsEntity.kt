@@ -4,12 +4,13 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "account_bookings")
-data class AccountBookingsEntity(
+@Entity(tableName = "depot_bookings")
+data class DepotBookingsEntity(
     @ColumnInfo(name = "datum") val datum: String,
     @ColumnInfo(name = "typ") val typ: String,
     @ColumnInfo(name = "wert") val wert: Double,
     @ColumnInfo(name = "buchungswaehrung") val buchungswaehrung: String,
+    @ColumnInfo(name = "gebuehren") val gebuehren: Double?,
     @ColumnInfo(name = "steuern") val steuern: Double?,
     @ColumnInfo(name = "stueck") val stueck: Double,
     @ColumnInfo(name = "isin") val isin: String?,

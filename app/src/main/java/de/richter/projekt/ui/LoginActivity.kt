@@ -24,6 +24,7 @@ class LoginActivity : AppCompatActivity(), View.OnClickListener {
 
         bt_login.setOnClickListener(this)
         bt_register.setOnClickListener(this)
+        startActivity(Intent(this, HomeActivity::class.java))
     }
 
     override fun onStart() {

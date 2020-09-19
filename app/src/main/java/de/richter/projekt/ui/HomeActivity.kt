@@ -2,6 +2,9 @@ package de.richter.projekt.ui
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.Button
 import android.widget.EditText
 import android.widget.LinearLayout
@@ -11,8 +14,16 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import com.google.gson.Gson
 import de.richter.projekt.R
+import de.richter.projekt.db.data.CurrenciesExchangeRate
+import de.richter.projekt.db.entity.CurrenciesExchangeRateEntity
+import de.richter.projekt.db.import.CurrenciesExchangeRateImportJson
+import de.richter.projekt.db.repository.CurrenciesExchangeRateRepository
 import kotlinx.android.synthetic.main.activity_home.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class HomeActivity : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
@@ -57,6 +68,53 @@ class HomeActivity : AppCompatActivity() {
         }
     }
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.import_action -> {
+
+                val currenciesExchangeRateImportJson = CurrenciesExchangeRateImportJson(this)
+                val jsonFileString = currenciesExchangeRateImportJson.importJson()
+                Log.d("TAG", "onOptionsItemSelected: ")
+                val gson = Gson()
+                var currenciesExchangeRate: CurrenciesExchangeRate =
+                    gson.fromJson(jsonFileString, CurrenciesExchangeRate::class.java)
+                lateinit var date: String
+                var rate: Double = 0.0
+                lateinit var target: String
+                var array = currenciesExchangeRate.arrayConversion
+                array.forEach { conversion ->
+                    date = conversion.date
+                    rate = conversion.rate.toDouble()
+                    target = conversion.target
+                }
+                var entity = CurrenciesExchangeRateEntity(
+                    currenciesExchangeRate.result.basic,
+                    target,
+                    date,
+                    rate
+                )
+                Log.d("TAG", "onOptionsItemSelected: ${currenciesExchangeRate.result}")
+                Log.d("TAG", "onOptionsItemSelected: ${currenciesExchangeRate.arrayConversion}")
+                Log.d("TAG", "onOptionsItemSelected: ${currenciesExchangeRate.result.basic}")
+                var repository = CurrenciesExchangeRateRepository(application)
+                CoroutineScope(Dispatchers.IO).launch {
+                    repository.insert(entity)
+                    val result = repository.getAll()
+                    result.forEach { currenciesExchangeRateEntity ->
+                        Log.d("TAG", "onOptionsItemSelected: $currenciesExchangeRateEntity")
+                    }
+
+                }
+
+            }
+        }
+        return true
+    }
 
     private fun signOut() {
         auth.signOut()

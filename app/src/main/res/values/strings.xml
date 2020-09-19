@@ -17,4 +17,5 @@
     <string name="portfolio_jens">Portfolio Jens</string>
     <string name="depot">Depot</string>
     <string name="verrechnungskonto">Verrechnungskonto</string>
+    <string name="importieren">Import</string>
 </resources>

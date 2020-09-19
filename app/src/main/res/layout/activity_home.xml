@@ -24,6 +24,11 @@
             android:layout_height="wrap_content"
             android:text="@string/portfolio_jens" />
 
+        <TextView
+            android:id="@+id/tv_log"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
     </LinearLayout>
 
     <Button

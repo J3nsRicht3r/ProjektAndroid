@@ -1,12 +1,11 @@
 package de.richter.projekt.db.data
 
 import com.google.gson.annotations.SerializedName
-import java.math.BigDecimal
 
 class CurrenciesExchangeRate(
-    @SerializedName("result") val from: From,
-    @SerializedName("conversion") val conversion: Array<Conversion>
+    @SerializedName("result") val result: Result,
+    @SerializedName("conversion") val arrayConversion: Array<Conversion>
 )
 
-class From(val from: String)
-class Conversion(val to: String, val date: String, val rate: BigDecimal)
+class Result(val basic: String)
+class Conversion(val target: String, val date: String, val rate: Double)
