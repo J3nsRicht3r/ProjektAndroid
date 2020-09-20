@@ -18,4 +18,5 @@
     <string name="depot">Depot</string>
     <string name="verrechnungskonto">Verrechnungskonto</string>
     <string name="importieren">Import</string>
+    <string name="output">Output</string>
 </resources>

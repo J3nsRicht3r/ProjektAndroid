@@ -23,7 +23,7 @@ class DepotBookingsRepository(app: Application) {
         depotBookingsDao.delete(data)
     }
 
-    fun getAllDepotBookings(): List<DepotBookingsEntity> {
+    suspend fun getAllDepotBookings(): List<DepotBookingsEntity> {
         return depotBookingsDao.getAllDepotBookings()
     }
 }

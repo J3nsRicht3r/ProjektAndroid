@@ -19,6 +19,7 @@ class PortfolioActivity : AppCompatActivity() {
             )
         }
 
+
         bt_depot.setOnClickListener { startActivity(Intent(this, DepotActivity::class.java)) }
 
         bt_verrechnungskonto.setOnClickListener {
@@ -30,4 +31,6 @@ class PortfolioActivity : AppCompatActivity() {
             )
         }
     }
+
+
 }

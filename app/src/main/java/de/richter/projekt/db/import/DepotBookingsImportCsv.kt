@@ -1,10 +1,12 @@
 package de.richter.projekt.db.import
 
 import android.content.Context
+import android.util.Log
 import de.richter.projekt.db.data.DepotBookings
 import java.io.BufferedReader
-import java.io.FileReader
 import java.io.IOException
+import java.io.InputStream
+import java.io.InputStreamReader
 
 class DepotBookingsImportCsv(val context: Context) {
     private val datum = 0
@@ -21,18 +23,21 @@ class DepotBookingsImportCsv(val context: Context) {
 
     fun importCsv(): ArrayList<DepotBookings>? {
         val fileName = "AktienDepot.csv"
-        var fileReader: BufferedReader? = null
+        val input: InputStream?
+        val fileReader: BufferedReader?
         var raw: String?
         try {
-            val bookings = ArrayList<DepotBookings>()
-
-            fileReader = BufferedReader(FileReader(fileName))
-            // Read the file line by line starting from the second line
+            val bookingsList = ArrayList<DepotBookings>()
+            input = context.assets.open(fileName)
+            val inputStreamReader = InputStreamReader(input)
+            fileReader = BufferedReader(inputStreamReader)
+            // Read the file line by line
             raw = fileReader.readLine()
             while (raw != null) {
                 val tokens = raw.split(";")
-                if (tokens.size > 0) {
-                    val bookings = DepotBookings(
+                Log.d("TAG", "importCsv: $tokens ")
+                if (tokens.size >= 0) {
+                    val depotBooking = DepotBookings(
                         tokens[datum],
                         tokens[typ],
                         tokens[wert].toDouble(),
@@ -45,16 +50,15 @@ class DepotBookingsImportCsv(val context: Context) {
                         tokens[ticker],
                         tokens[wertpapiername]
                     )
-
+                    bookingsList.add(depotBooking)
                 }
+                raw = fileReader.readLine()
             }
-            return bookings
+            return bookingsList
 
 
         } catch (ex: IOException) {
             ex.printStackTrace()
-        } finally {
-            fileReader!!.close()
         }
         return null
     }

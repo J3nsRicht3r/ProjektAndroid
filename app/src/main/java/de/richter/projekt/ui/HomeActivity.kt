@@ -58,6 +58,7 @@ class HomeActivity : AppCompatActivity() {
             meldung.setView(etPortfolioName)
             meldung.show()
         }
+
         bt_portfolio.setOnClickListener {
             startActivity(
                 Intent(

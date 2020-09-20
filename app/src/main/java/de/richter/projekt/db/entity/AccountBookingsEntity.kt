@@ -11,11 +11,11 @@ data class AccountBookingsEntity(
     @ColumnInfo(name = "wert") val wert: Double,
     @ColumnInfo(name = "buchungswaehrung") val buchungswaehrung: String,
     @ColumnInfo(name = "steuern") val steuern: Double?,
-    @ColumnInfo(name = "stueck") val stueck: Double,
+    @ColumnInfo(name = "stueck") val stueck: Double?,
     @ColumnInfo(name = "isin") val isin: String?,
     @ColumnInfo(name = "wkn") val wkn: String?,
-    @ColumnInfo(name = "ticker") val ticker: String,
-    @ColumnInfo(name = "wertpapiername") val wertpapiername: String,
+    @ColumnInfo(name = "ticker") val ticker: String?,
+    @ColumnInfo(name = "wertpapiername") val wertpapiername: String?,
 ) {
     @PrimaryKey(autoGenerate = true)
     var id: Long = 0
