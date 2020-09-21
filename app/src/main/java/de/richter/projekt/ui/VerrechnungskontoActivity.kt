@@ -36,14 +36,14 @@ class VerrechnungskontoActivity : AppCompatActivity() {
                     val csvFileArrayList = accountBookingsImportCsv.importCsv()
                     lateinit var datum: String
                     lateinit var typ: String
-                    var wert: Double = 0.0
+                    var wert: Double
                     lateinit var buchungswaehrung: String
-                    var steuern: Double? = 0.0
-                    var stueck: Double? = 0.0
-                    var isin: String? = null
-                    var wkn: String? = null
-                    var ticker: String? = null
-                    var wertpapiername: String? = null
+                    var steuern: Double?
+                    var stueck: Double?
+                    var isin: String?
+                    var wkn: String?
+                    var ticker: String?
+                    var wertpapiername: String?
                     val repository = AccountBookingsRepository(application)
 
                     csvFileArrayList!!.forEach { data ->

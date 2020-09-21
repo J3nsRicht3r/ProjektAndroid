@@ -38,13 +38,13 @@ class DepotActivity : AppCompatActivity() {
                     val csvFileArrayList = depotBookingsImportCsv.importCsv()
                     lateinit var datum: String
                     lateinit var typ: String
-                    var wert: Double = 0.0
+                    var wert: Double
                     lateinit var buchungswaehrung: String
-                    var gebuehren: Double? = 0.0
-                    var steuern: Double? = 0.0
-                    var stueck: Double = 0.0
-                    var isin: String? = null
-                    var wkn: String? = null
+                    var gebuehren: Double?
+                    var steuern: Double?
+                    var stueck: Double
+                    var isin: String?
+                    var wkn: String?
                     lateinit var ticker: String
                     lateinit var wertpapiername: String
                     val repository = DepotBookingsRepository(application)
